@@ -1,3 +1,5 @@
+import ScenesManager from "../core/ScenesManager";
+import mapaniveles from "./mapa-niveles";
 
 const mainmenu = {
 
@@ -5,11 +7,14 @@ const mainmenu = {
 
     loadLogic: function () {
 
+        const buttonPlay = document.getElementById('play');
+
+        buttonPlay.addEventListener('click', e => {
+            new ScenesManager().cargarPantalla( mapaniveles );
+        });
     },
 
-    onDestroy: function () {
-        
-    }
+    onDestroy: function () {},
 };
 
 
