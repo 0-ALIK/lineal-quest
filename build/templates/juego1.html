@@ -1,1 +1,304 @@
-<p>juego 1</p>
+<style>
+    .juego {
+        color: white;
+        height: 95vh;
+        width: 95vw;
+        display: flex;
+        flex-direction: row;
+        background-image: url('https://static.vecteezy.com/system/resources/previews/007/633/071/original/cartoon-colorful-panorama-of-spring-summer-beautiful-nature-green-grasslands-meadow-with-mountains-on-horizon-background-summer-mountain-landscape-dawn-over-the-valley-illustration-free-vector.jpg');
+        background-size: cover;
+    }
+
+    .left-section {
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+    }
+
+    .right-section {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+    }
+
+
+    .vida{
+        width: 50%;
+        height: 10%;
+        background-color: gray;
+        border: 1px solid black;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 5% auto;
+    }
+
+    .vida p {
+        font-size: 30px;
+    }
+
+    .personaje {
+        width: 100%;
+        margin-top: 10%;
+    }
+
+    .hablar-pj{
+        animation: hablar 1s infinite;
+    }
+
+    .cuadro-texto{
+        margin: 0 10px;
+        margin-bottom: 5%;
+        width: 100%;
+        height: auto;
+        border: 1px solid black;
+        border-radius: 5px;
+        background-color: gray;
+    }
+    .texto{
+        font-size: 20px;
+        padding: 5px;
+         overflow: hidden;
+        white-space: nowrap;
+    }
+    .hablar{
+        animation: typing 4s steps(19) infinite;
+    }
+
+    .cuadro-superior{
+        width: 100%;
+        height: 20%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .tiempo{
+        width: 30%;
+        height: 50%;
+        background-color: gray;
+        border: 1px solid black;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: auto auto;
+        padding: 10px;
+        font-size: 35px;
+    }
+
+    .potenciadores{
+        width: 30%;
+        height: 50%;
+        background-color: gray;
+        border: 1px solid black;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin: auto auto;
+        padding: 10px;
+        font-size: 35px;
+    }
+
+    .cuadro-problema{
+        width: 90%;
+        height: 50%;
+        font-size: 20px;
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 5px;
+        background-color: gray;
+        margin: 0 auto;
+    }
+
+    .cuadro-respuesta{
+        width: 90%;
+        height: 25%;
+        border: 1px solid black;
+        border-radius: 5px;
+        background-color: gray;
+        margin: 0 auto;
+        margin-top: 2%;
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-row: auto auto;
+        grid-column-gap: 20px;
+        grid-row-gap: 20px;
+    }
+
+    .opc {
+        margin: 5px;
+    background-color:#333;
+    padding:20px;
+    border-radius:10px;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:40px;
+    font-family:sans-serif;
+    }
+
+    .malo{
+        background-color: rgb(153, 0, 0) !important; 
+    }
+
+    .opc:hover{
+        background-color: #1d1d1d;
+        margin: 2px;
+        cursor: pointer;
+    }
+
+    .modal{
+        width: 95vw;
+        height: 95vh;
+        position: absolute;
+        background-color: #1d1d1d85;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .preparado{
+        color: #fff;
+        font-size: 100px;
+    }
+
+    .resultado{
+        background-image: url('./assets/sprites/madera2.png');
+        width: 60%;
+        height: 77%;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .resultado h2{
+        font-size: 5rem;
+        color: #fff;
+    }
+
+    .resultado p{
+        font-size: 150px;
+        color: #fff;
+    }
+
+    .resultado img{
+        width: 40%;
+        margin: 0 auto;
+        margin-top: 5%;
+        cursor: pointer;    
+    }
+
+    .resultado img:hover{
+        transform: scale(1.2);
+    }
+
+    .fallido{
+        color: #f24726 !important;
+    }
+
+    .hide{
+        display: none;
+    }
+
+    @keyframes hablar {
+        0% {
+            transform: scaleY(1);
+        }
+         
+        15% {
+            transform: scaleY(1.2);
+        }
+        30% {
+            transform: scaleY(1);
+        }
+        45% {
+            transform: scaleY(1.2);
+        }
+        60% {
+            transform: scaleY(1);
+        }
+        75% {
+            transform: scaleY(1.2);
+        }
+        90% {
+            transform: scaleY(1.3);
+        }
+        100% {
+            transform: scaleY(1);
+        }
+    
+    }
+
+    @keyframes typing{
+0%{
+    width: 0%;
+}
+100%{
+    width: 100%;
+}}
+</style>
+
+<audio src="/build/assets/audio/musicaJuego.mp3" autoplay  loop></audio>
+<div class="modal">
+    <h1 class="preparado">ENCUENTRA LAS VARIBLES?!</h1>
+    <div class="resultado hide">                 
+        <h2 class="resultado-txt">Nivel Completado</h2>
+        <p class="estrellas-resultado"></p>
+        <img src="/build/assets/sprites/btnContinuar.png" alt="" class="continuar">
+    </div>
+</div>
+<div class="juego">
+
+<div class="left-section">
+    <div class="vida">
+        <p>VIDA</p>
+        <p class="vida-jugador">❤️❤️❤️</p>
+    </div>
+    <div class="cuadro-texto">
+        <div class="texto" ></div>
+    </div>
+    <img src="https://png.pngtree.com/png-clipart/20230401/original/pngtree-indian-boy-2d-cartoon-character-with-kurta-and-pajama-isolated-on-png-image_9018082.png" alt="" class="personaje">
+  
+</div>
+
+
+<div class="right-section">
+    <div class="cuadro-superior">
+        <div class="tiempo">
+            <p>Tiempo</p>
+            <p class="tiempo-juego">3:0</p>
+        </div>
+        <div class="potenciadores">
+            <p>Potenciadores</p>
+            <p>🥶</p>
+            <p>❤️</p>
+            <p>❤️</p>
+        </div>
+    </div>
+
+    <div class="cuadro-problema">
+        Supongamos que tienes una tienda de ropa y vendes dos tipos de prendas: camisetas y pantalones. 
+        <br>Cada camiseta se vende por $10 y cada pantalón por $20. Quieres maximizar tus ganancias diarias, pero tienes dos restricciones:
+<br><br>Solo puedes vender un máximo de 50 camisetas al día.
+<br>Solo puedes vender un máximo de 30 pantalones al día.
+    </div>
+    
+    <div class="cuadro-respuesta">
+        <div class="opc">2 variables</div>
+        <div class="opc">4 variables</div>
+        <div class="opc">3 variables</div>
+        <div class="opc">5 variables</div>
+    </div>
+</div>
+</div>

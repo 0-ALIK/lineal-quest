@@ -1,7 +1,11 @@
 <style>
     .mapa-plataforma, .mapa-estrella {
-        width: 60px;
+        width: 100px;
         display: block;
+    }
+    .sprite:hover{
+        transform: scale(1.2);
+        cursor: pointer;
     }
 
     .move {
@@ -13,36 +17,111 @@
         font-size: large;
         text-align: center;
     }
+
+    .mapa{
+        height: 95vh;
+    }
+    
+    .estrellas{
+        position: absolute;
+        font-size: 25px;
+        top: 25px;
+    }
+
+    .pj-info{
+        height: 15vh;
+        width: 20vw;
+        top: 0;
+        background-image: url('./assets/sprites/madera.png');
+        background-size: cover;
+        position: absolute;
+    }
+
+    .pj-info h2{
+        color: #fff;
+        text-align: center;
+        font-size: 40px;
+        font-weight: bold;
+        margin: 0;
+        margin-top: 20px;
+        padding: 0;
+    }
+
+    .pj-datos{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .pw{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .pw img{
+        width: 50px;
+    }
+
+    .pw p{
+        color: #fff;
+        font-size:30px;
+        margin-left: 5px;
+    }
+
+    .hide{
+        display: none;
+    }
 </style>
+<img src="https://cdna.artstation.com/p/assets/images/images/024/852/708/large/tatiana-masliuk-001.jpg?1583758901" alt="mapa" class="back mapa">
 
-<img src="/build/assets/sprites/mapa-niveles.jpg" alt="mapa" class="back">
-
-<div class="sprite" data-nivel="nivel-1">
-    <p class="mapa-text">Nivel</p>
-    <img src="/build/assets/sprites/nivel-plataforma.jpg" alt="plataforma" class="mapa-plataforma">
-    <img src="/build/assets/sprites/nivel-estrellas-3.jpg" alt="estrellas" class="mapa-estrella">
+<div class="pj-info">
+    <h2 class="pj-nombre">Yunier Yau</h2>
+    <div class="pj-datos">
+        <div class="pw">
+            <img src="./assets/sprites/estrella.png" alt="">
+            <p class="pj-estrellas">0</p>
+        </div>
+        <div class="pw ">
+            <img src="./assets/sprites/vidaExtra.png" alt="">
+            <p class="pw-vidaExtra">0</p>
+        </div>
+        <div class="pw ">
+            <img src="./assets/sprites/congelacion.png" alt="">
+            <p class="pw-congelacion">0</p>
+        </div>
+    </div>
 </div>
 
-<div class="sprite" data-nivel="nivel-2">
+<audio src="/build/assets/audio/mapaMusica.mp3" autoplay  loop ></audio>
+
+<div class="sprite hide" data-nivel="nivel-1">
     <p class="mapa-text">Nivel</p>
-    <img src="/build/assets/sprites/nivel-plataforma.jpg" alt="plataforma" class="mapa-plataforma">
-    <img src="/build/assets/sprites/nivel-estrellas-3.jpg" alt="estrellas" class="mapa-estrella">
+    <img src="https://static.vecteezy.com/system/resources/previews/010/829/105/original/wood-sign-hand-draw-free-png.png" alt="plataforma" class="mapa-plataforma">
+    <p class="estrellas"></p>
 </div>
 
-<div class="sprite" data-nivel="nivel-3">
+<div class="sprite hide" data-nivel="nivel-2">
     <p class="mapa-text">Nivel</p>
-    <img src="/build/assets/sprites/nivel-plataforma.jpg" alt="plataforma" class="mapa-plataforma">
-    <img src="/build/assets/sprites/nivel-estrellas-3.jpg" alt="estrellas" class="mapa-estrella">
+    <img src="https://static.vecteezy.com/system/resources/previews/010/829/105/original/wood-sign-hand-draw-free-png.png" alt="plataforma" class="mapa-plataforma">
+    <p class="estrellas"></p>
 </div>
 
-<div class="sprite" data-nivel="nivel-4">
+<div class="sprite hide" data-nivel="nivel-3">
     <p class="mapa-text">Nivel</p>
-    <img src="/build/assets/sprites/nivel-plataforma.jpg" alt="plataforma" class="mapa-plataforma">
-    <img src="/build/assets/sprites/nivel-estrellas-3.jpg" alt="estrellas" class="mapa-estrella">
+    <img src="https://static.vecteezy.com/system/resources/previews/010/829/105/original/wood-sign-hand-draw-free-png.png" alt="plataforma" class="mapa-plataforma">
+    <p class="estrellas"></p>
 </div>
 
-<div class="sprite" data-nivel="nivel-5">
+<div class="sprite hide" data-nivel="nivel-4">
     <p class="mapa-text">Nivel</p>
-    <img src="/build/assets/sprites/nivel-plataforma.jpg" alt="plataforma" class="mapa-plataforma">
-    <img src="/build/assets/sprites/nivel-estrellas-3.jpg" alt="estrellas" class="mapa-estrella">
+    <img src="https://static.vecteezy.com/system/resources/previews/010/829/105/original/wood-sign-hand-draw-free-png.png" alt="plataforma" class="mapa-plataforma">
+    <p class="estrellas"></p>
+</div>
+
+<div class="sprite hide" data-nivel="nivel-5">
+    <p class="mapa-text">Nivel</p>
+    <img src="https://static.vecteezy.com/system/resources/previews/010/829/105/original/wood-sign-hand-draw-free-png.png" alt="plataforma" class="mapa-plataforma">
+    <p class="estrellas"></p>
 </div>

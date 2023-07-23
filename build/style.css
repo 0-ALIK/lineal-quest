@@ -18,8 +18,6 @@
     border: 10px solid #fff;
     background-color: #fff;
     position: relative;
-    width: 700px;
-    height: 500px;
 }
 
 .back {
@@ -31,4 +29,7 @@
 .sprite {
     position: absolute;
     object-fit: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
