@@ -36,6 +36,8 @@ const mainmenu = {
 
         buttonPlayOpcional.addEventListener('click', e => {
             if(!inputNombre.value && inputNombre.value.trim().length === 0) return; 
+
+            baseDatos.setNombreJugador( inputNombre.value );
             new ScenesManager().cargarPantalla( mapaniveles );
         }); 
 
