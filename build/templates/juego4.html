@@ -1,1 +1,361 @@
-<p>juego 4</p>
+<style>
+    .juego {
+        color: white;
+        height: 95vh;
+        width: 95vw;
+        display: flex;
+        flex-direction: row;
+        background-image: url('./assets/sprites/fondo.jpg');
+        background-size: cover;
+        overflow: hidden;
+    }
+
+    .left-section {
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+    }
+
+    .right-section {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+    }
+
+
+    .vida{
+        width: 50%;
+        height: 10%;
+        background-color: #ffe854;
+        border: 3px solid black;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 5% auto;
+        color: #22ba39;
+        box-shadow: 1px 12px 16px 1px rgba(0,0,0,0.75);
+    }
+
+    .vida p {
+        font-size: 30px;
+    }
+
+    .personaje {
+        width: 100%;
+    }
+
+    .hablar-pj{
+        animation: hablar 1s infinite;
+    }
+
+    .cuadro-texto{
+        margin: 0 10px;
+        margin-bottom: 5%;
+        width: 100%;
+        height: auto;
+        border: 2px solid black;
+        border-radius: 5px;
+        background-color: #e3e3e3;
+        color: black;
+        box-shadow: 1px 12px 16px 1px rgba(0,0,0,0.75);
+    }
+    .texto{
+        font-size: 20px;
+        padding: 5px;
+         overflow: hidden;
+        white-space: nowrap;
+    }
+    .hablar{
+        animation: typing 4s steps(19) infinite;
+    }
+
+    .cuadro-superior{
+        width: 100%;
+        height: 20%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .tiempo{
+        width: 30%;
+        height: 50%;
+        background-color: #70b749;
+        border: 3px solid black;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: auto auto;
+        padding: 10px;
+        font-size: 35px;
+        box-shadow: 1px 12px 16px 1px rgba(0,0,0,0.75);
+    }
+
+    .potenciadores{
+        width: 30%;
+        height: 50%;
+        background-color: #9287ff;
+        border: 3px solid black;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin: auto auto;
+        padding: 10px;
+        font-size: 35px;
+        box-shadow: 1px 12px 16px 1px rgba(0,0,0,0.75);
+    }
+
+    .cuadro-problema{
+        width: 90%;
+        height: 50%;
+        font-size: 20px;
+        padding: 10px;
+        border: 3px solid black;
+        color: black;
+        border-radius: 5px;
+        background-color: #e3904c;
+        margin: 0 auto;
+        box-shadow: 1px 12px 16px 1px rgba(0,0,0,0.75);
+    }
+
+    .cuadro-respuesta{
+        width: 90%;
+        height: 25%;
+        border-radius: 5px;
+        background-color: rgba(128, 128, 128, 0);
+        margin: 0 auto;
+        margin-top: 2%;
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-row: auto auto;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+    }
+
+    .opc {
+    margin: 5px;
+    background-color:#333;
+    padding:20px;
+    border-radius:10px;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:40px;
+    font-family:sans-serif;
+    }
+
+    .malo{
+        background-color: rgb(153, 0, 0) !important; 
+    }
+
+    .opc:hover{
+        background-color: #1d1d1d;
+        margin: 2px;
+        cursor: pointer;
+    }
+
+    .modal{
+        width: 95vw;
+        height: 95vh;
+        position: absolute;
+        background-color: #1d1d1d85;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .preparado{
+        color: #fff;
+        font-size: 100px;
+    }
+
+    .resultado{
+        background-image: url('./assets/sprites/madera2.png');
+        width: 60%;
+        height: 77%;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .resultado h2{
+        font-size: 5rem;
+        color: #fff;
+    }
+
+    .resultado p{
+        font-size: 150px;
+        color: #fff;
+    }
+
+    .resultado img{
+        width: 40%;
+        margin: 0 auto;
+        margin-top: 5%;
+        cursor: pointer;    
+    }
+
+    .resultado img:hover{
+        transform: scale(1.2);
+    }
+
+    .fallido{
+        color: #f24726 !important;
+    }
+
+    .hide{
+        display: none;
+    }
+
+    .potenciadores h2{
+        font-size: 40px;
+        margin-right: 20px;
+    }
+
+    .pw{
+        width: 50px;
+        margin: 0 5px;}
+
+    .pw:hover{
+        transform: scale(1.2);
+    }
+
+    .pw-cuadro{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid black;
+        border-radius: 5px;
+        background-color: #1d1d1d;
+        margin: 0 5px;
+    }
+
+    .congelado{
+        background-color: aqua;
+    }
+
+    .bueno{
+        background-color: greenyellow;
+    }
+
+    @keyframes hablar {
+        0% {
+            transform: scaleY(1);
+        }
+         
+        15% {
+            transform: scaleY(1.2);
+        }
+        30% {
+            transform: scaleY(1);
+        }
+        45% {
+            transform: scaleY(1.2);
+        }
+        60% {
+            transform: scaleY(1);
+        }
+        75% {
+            transform: scaleY(1.2);
+        }
+        90% {
+            transform: scaleY(1.3);
+        }
+        100% {
+            transform: scaleY(1);
+        }
+    
+    }
+
+    @keyframes typing{
+0%{
+    width: 0%;
+}
+100%{
+    width: 100%;
+}}
+</style>
+
+<audio src="/build/assets/audio/musicaJuego.mp3" autoplay  loop></audio>
+<div class="modal">
+    <h1 class="preparado">PREPARADO?!</h1>
+    <div class="resultado hide">                 
+        <h2 class="resultado-txt">Nivel Completado</h2>
+        <p class="estrellas-resultado"></p>
+        <img src="/build/assets/sprites/btnContinuar.png" alt="" class="continuar">
+    </div>
+</div>
+<div class="juego">
+
+<div class="left-section">
+    <div class="vida">
+        <p>VIDA</p>
+        <p class="vida-jugador">❤️❤️❤️</p>
+    </div>
+    <div class="cuadro-texto">
+        <div class="texto" ></div>
+    </div>
+    <img src="/build/assets/sprites/personaje.png" alt="" class="personaje">
+  
+</div>
+
+
+<div class="right-section">
+    <div class="cuadro-superior">
+        <div class="tiempo">
+            <p>Tiempo</p>
+            <p class="tiempo-juego">3:0</p>
+        </div>
+        <div class="potenciadores">
+            <h2>PowerUps!</h2>
+            <div class="pw-cuadro">
+                <img src="/build/assets/sprites/vidaExtra.png" alt="" class="pw pw-vidaextra" style="width: 56px;">
+                <p class="vidaextra">1</p>
+            </div>
+            <div class="pw-cuadro">
+                <img src="/build/assets/sprites/congelacion.png" alt="" class="pw pw-congelacion">
+                <p class="congelacion">1</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="cuadro-problema">
+        <h2>Encuentra la funcion objetiva!</h2>
+        Supongamos que tienes una tienda de ropa y vendes dos tipos de prendas: camisetas y pantalones. <br>
+        Cada camiseta se vende por $10 y cada pantalón por $20. Quieres maximizar tus ganancias diarias, pero tienes dos restricciones:
+<br>
+Solo puedes vender un máximo de 50 camisetas al día. <br>
+Solo puedes vender un máximo de 30 pantalones al día. <br>
+En este caso, las variables son directamente las cantidades de camisetas y pantalones que decides vender en un día determinado. <br>
+<br>
+Variables: <br>
+
+x: cantidad de camisetas vendidas al día. <br>
+y: cantidad de pantalones vendidos al día. <br>
+<br>
+<br>TIP: Como identifico la funcion objetiva?<br>
+Puedes identificar la función objetivo al observar la ecuación o expresión matemática que involucra <br>
+ las variables del problema y que queremos optimizar <br>
+    </div>
+    
+    <div class="cuadro-respuesta">
+        <div class="opc">z =50x+30y</div>
+        <div class="opc">z =10x+20y</div>
+        <div class="opc">z =x+y</div>
+        <div class="opc">z =20x+10y</div>
+    </div>
+</div>
+</div>
+

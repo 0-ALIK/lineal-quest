@@ -37,6 +37,23 @@
         position: absolute;
     }
 
+    .desbloqueables{
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 10px;
+    }
+
+    .desbloqueable-img{
+        width: 5vw;
+        margin: 10px;
+    }
+
+    .desbloqueables:hover{
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+
     .pj-info h2{
         color: #fff;
         text-align: center;
@@ -71,10 +88,174 @@
     }
 
     .hide{
-        display: none;
+        display: none !important;
+    }
+
+    .modal{
+        width: 99vw;
+        height: 95vh;
+        top: 0;
+        position: absolute;
+        background-color: #1d1d1d85;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .resultado{
+        background-image: url('./assets/sprites/tablon.png');
+        width: 45%;
+        height: 51%;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 50px 50px;
+    }
+    .resultado h2{
+        font-size: 5rem;
+        color: #fff;
+        margin-bottom: auto;
+    }
+
+    .regresar{
+        color: white;
+        font-size: 20px;
+        margin-right: auto;
+        margin-left: 20px;
+        border: 1px solid;
+        border-radius: 5px;
+        background-color: rgb(141, 80, 80);
+        padding: 5px;
+    }
+
+    .regresar:hover{
+        cursor: pointer;
+        scale: 1.1;
+    }
+
+    .desbloqueables-menu{
+        width: 95%;
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 50px;
+        padding: 20px;
+        overflow-y: hidden;
+        overflow-x: scroll;
+    }
+
+    ::-webkit-scrollbar {  
+        width: 0;/* Remove scrollbar space */
+        background: transparent;/* Optional: just make scrollbar invisible */
+  
+}
+
+    .desbloqueable-item{
+    display: flex;
+    padding: 5px;
+    flex-direction: column;
+    margin: 5px 10px;
+    border: 1px solid;
+    border-radius: 10px;
+    background-color: #efa16c;
+    align-items: center;
+    box-shadow: -1px 11px 13px 1px rgba(0,0,0,0.75);
+    -webkit-box-shadow: -1px 11px 13px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 11px 13px 1px rgba(0,0,0,0.75);
+    }
+
+    .desbloqueable-item p{
+        font-size: 30px;
+    }
+
+    .desbloqueable-item img{
+        border-top: 2px solid;
+    }
+
+    .desbloqueable-item span{
+        font-size: 25px;
+    }
+
+    .desbloqueable-item button{
+        margin-top: auto;
+        width: 80px;
+        height: 40px;
+        border-radius: 10px;
+        border: none;
+        background-color: #fff;
+        font-size: 20px;
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+    }
+
+    .desbloqueable-item span{
+        margin-top: auto;
+    }
+    .desbloqueable-item button:hover{
+        cursor: pointer;
+        scale: 1.1;
     }
 </style>
-<img src="https://cdna.artstation.com/p/assets/images/images/024/852/708/large/tatiana-masliuk-001.jpg?1583758901" alt="mapa" class="back mapa">
+<img src="./assets/sprites/mapaNivel.jpg" alt="mapa" class="back mapa">
+
+<div class="modal hide">
+    <div class="resultado">        
+        <p class="regresar">⬅Regresar</p>         
+        <h2 class="resultado-txt">Desbloqueables</h2>
+        <div class="desbloqueables-menu">
+            <div class="desbloqueable-item">
+                <p>⭐3</p>
+                <img src="./assets/sprites/vidaExtra.png" alt=""><span>1</span>
+                <button class="hide a">recibir</button>
+            </div>
+            <div class="desbloqueable-item">
+                <p>⭐6</p>
+                <img src="./assets/sprites/congelacion.png" alt=""><span>1</span>
+                <button class="hide a">recibir</button>
+            </div>
+            <div class="desbloqueable-item">
+                <p>⭐9</p>
+                <img src="./assets/sprites/vidaExtra.png" alt=""><span>2</span>
+                <button class="hide a">recibir</button>
+            </div>
+            <div class="desbloqueable-item">
+                <p>⭐12</p>
+                <img src="./assets/sprites/congelacion.png" alt=""><span>2</span>
+                <button class="hide a">recibir</button>
+            </div>
+            <div class="desbloqueable-item">
+                <p>⭐15</p>
+                <img src="./assets/sprites/vidaExtra.png" alt=""><span>3</span>
+                <button class="hide">recibir</button>
+            </div>
+            <div class="desbloqueable-item">
+                <p>⭐18</p>
+                <img src="./assets/sprites/congelacion.png" alt=""><span>3</span>
+                <button class="hide">recibir</button>
+            </div>
+            <div class="desbloqueable-item">
+                <p>⭐21</p>
+                <img src="./assets/sprites/vidaExtra.png" alt=""><span>3</span>
+                <button class="hide">recibir</button>
+            </div>
+            <div class="desbloqueable-item">
+                <p>⭐24</p>
+                <img src="./assets/sprites/congelacion.png" alt=""><span>3</span>
+                <button class="hide">recibir</button>
+            </div>
+            <div class="desbloqueable-item">
+                <p>⭐27</p>
+                <img src="./assets/sprites/vidaExtra.png" alt=""><span>3</span>
+                <button class="hide">recibir</button>
+            </div>
+            
+        </div>
+    </div>
+</div>
 
 <div class="pj-info">
     <h2 class="pj-nombre">Yunier Yau</h2>
@@ -94,34 +275,56 @@
     </div>
 </div>
 
+<div class="desbloqueables">
+    <img src="./assets/sprites/desbloqueables.png" alt="" class="desbloqueable-img">
+</div>
+
 <audio src="/build/assets/audio/mapaMusica.mp3" autoplay  loop ></audio>
 
 <div class="sprite hide" data-nivel="nivel-1">
     <p class="mapa-text">Nivel</p>
-    <img src="https://static.vecteezy.com/system/resources/previews/010/829/105/original/wood-sign-hand-draw-free-png.png" alt="plataforma" class="mapa-plataforma">
+    <img src="./assets/sprites/nivel.png" alt="plataforma" class="mapa-plataforma">
     <p class="estrellas"></p>
 </div>
 
 <div class="sprite hide" data-nivel="nivel-2">
     <p class="mapa-text">Nivel</p>
-    <img src="https://static.vecteezy.com/system/resources/previews/010/829/105/original/wood-sign-hand-draw-free-png.png" alt="plataforma" class="mapa-plataforma">
+    <img src="./assets/sprites/nivel.png" alt="plataforma" class="mapa-plataforma">
     <p class="estrellas"></p>
 </div>
 
 <div class="sprite hide" data-nivel="nivel-3">
     <p class="mapa-text">Nivel</p>
-    <img src="https://static.vecteezy.com/system/resources/previews/010/829/105/original/wood-sign-hand-draw-free-png.png" alt="plataforma" class="mapa-plataforma">
+    <img src="./assets/sprites/nivel.png" alt="plataforma" class="mapa-plataforma">
     <p class="estrellas"></p>
 </div>
 
 <div class="sprite hide" data-nivel="nivel-4">
     <p class="mapa-text">Nivel</p>
-    <img src="https://static.vecteezy.com/system/resources/previews/010/829/105/original/wood-sign-hand-draw-free-png.png" alt="plataforma" class="mapa-plataforma">
+    <img src="./assets/sprites/nivel.png" alt="plataforma" class="mapa-plataforma">
     <p class="estrellas"></p>
 </div>
 
 <div class="sprite hide" data-nivel="nivel-5">
     <p class="mapa-text">Nivel</p>
-    <img src="https://static.vecteezy.com/system/resources/previews/010/829/105/original/wood-sign-hand-draw-free-png.png" alt="plataforma" class="mapa-plataforma">
+    <img src="./assets/sprites/nivel.png" alt="plataforma" class="mapa-plataforma">
+    <p class="estrellas"></p>
+</div>
+
+<div class="sprite hide" data-nivel="nivel-6">
+    <p class="mapa-text">Nivel</p>
+    <img src="./assets/sprites/nivel.png" alt="plataforma" class="mapa-plataforma">
+    <p class="estrellas"></p>
+</div>
+
+<div class="sprite hide" data-nivel="nivel-7">
+    <p class="mapa-text">Nivel</p>
+    <img src="./assets/sprites/nivel.png" alt="plataforma" class="mapa-plataforma">
+    <p class="estrellas"></p>
+</div>
+
+<div class="sprite hide" data-nivel="nivel-8">
+    <p class="mapa-text">Nivel</p>
+    <img src="./assets/sprites/nivel.png" alt="plataforma" class="mapa-plataforma">
     <p class="estrellas"></p>
 </div>

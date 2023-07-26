@@ -10,12 +10,14 @@ export default class GameManager{
     datoUsuario;
     datoJuego;
     intervalid;
+    congelacion;
 
     constructor() {
         this.hoveraudio = new Audio('/build/assets/audio/pop.mp3');
         this.hitaudio = new Audio('/build/assets/audio/hit.mp3');
         this.datoUsuario = JSON.parse(localStorage.getItem('usuario-progreso'));
         this.datoJuego = {estrellas: 0, vida: 3, tiempo: 0};
+        this.congelacion = false;
     }
 
     //setea el boton del modal
@@ -47,8 +49,9 @@ export default class GameManager{
         let minute = tiempo;
         let sec = 1;
         this.intervalid = setInterval(() => {
+        if(this.datoJuego.vida <= 0) this.nivelFallido();
+        if(!this.congelacion){
             cuadroTiempo.innerHTML = minute + ':' + sec;
-            if(this.datoJuego.vida <= 0) this.nivelFallido();
             funcion();
             if (sec == 0) {
                 if (minute == 0 && sec ==0) this.nivelFallido();
@@ -57,6 +60,7 @@ export default class GameManager{
                 sec = 60;
             }
             sec--;
+        }
         }, tiempo * 1000);
     }
 
@@ -103,6 +107,7 @@ export default class GameManager{
         pantallaResultado.classList.remove('hide');
         textoResultado.classList.add('fallido');
         textoResultado.innerHTML = 'Nivel Fallido';
+        localStorage.setItem('usuario-progreso', JSON.stringify(this.datoUsuario))
         clearInterval(this.intervalid);
     }
 
@@ -130,7 +135,8 @@ export default class GameManager{
         if(this.datoJuego.vida == 3 && this.datoJuego.tiempo <= 3) this.datoJuego.estrellas = 3; 
         if(this.datoJuego.vida <= 2 && this.datoJuego.tiempo >= 2) this.datoJuego.estrellas = 2; 
         if(this.datoJuego.vida <= 1 && this.datoJuego.tiempo >= 2) this.datoJuego.estrellas = 2; 
-        if(this.datoJuego.vida == 1 && this.datoJuego.tiempo >= 1) this.datoJuego.estrellas = 1; 
+        if(this.datoJuego.vida <= 2 && this.datoJuego.tiempo >= 1) this.datoJuego.estrellas = 2; 
+        if(this.datoJuego.vida <= 1 && this.datoJuego.tiempo >= 1) this.datoJuego.estrellas = 1; 
         if(this.datoJuego.vida == 1 && this.datoJuego.tiempo >= 0) this.datoJuego.estrellas = 1; 
     }
 
@@ -156,7 +162,7 @@ export default class GameManager{
         //si estamos en el nivel 1 debemos pushear en progreso = {nivel:2,estrellas:0}
         if(!this.datoUsuario.progreso[nivelActual]) this.datoUsuario.progreso.push({nivel:nivelActual+1,estrellas:0})
         //para guarda el puntaje mas alto
-        if(this.datoUsuario.progreso[0].estrellas < this.datoJuego.estrellas) this.datoUsuario.progreso[0].estrellas = this.datoJuego.estrellas;
+        if(this.datoUsuario.progreso[0+nivelActual-1].estrellas < this.datoJuego.estrellas) this.datoUsuario.progreso[0+nivelActual-1].estrellas = this.datoJuego.estrellas;
         localStorage.setItem('usuario-progreso', JSON.stringify(this.datoUsuario))
     }
 
@@ -169,11 +175,53 @@ export default class GameManager{
                 if(index != opcionCorrecta){
                 this.setearBoton(boton, respuestaMala);
             }
+                if(index == opcionCorrecta)this.setearBoton(boton, respuestaBuena);//respuesta correcta
             })
-            //respuesta correcta
-            botones[opcionCorrecta].addEventListener('click', e => {
-                respuestaBuena();
-            })
+            
+    }
+
+    setearPW = (pw1, pw2) => {
+        const pw1DOM = document.querySelector(pw1) || document.getElementById(pw1);
+        const pw2DOM = document.querySelector(pw2) || document.getElementById(pw2);
+        pw1DOM.innerHTML = this.datoUsuario.pw_vida;
+        pw2DOM.innerHTML = this.datoUsuario.pw_congelar;
+    }
+
+    pwVidaExtra = (DOMcuadroVida, pwCantidad, corazones) => {
+        if(this.datoJuego.vida < 3 && !this.datoUsuario.pw_vida == 0){
+            const SFXvidaextra = new Audio('/build/assets/audio/vidaExtra.mp3');
+            const cuadroVida = document.querySelector(DOMcuadroVida) || document.getElementById(DOMcuadroVida);
+            const pwVida = document.querySelector(pwCantidad) || document.getElementById(pwCantidad);
+            const vida = document.querySelector(corazones) || document.getElementById(corazones);
+            SFXvidaextra.currentTime = 0.25;
+            SFXvidaextra.play();
+            this.datoJuego.vida++;
+            this.datoUsuario.pw_vida--;
+            pwVida.innerHTML--;
+            cuadroVida.classList.add('bueno');
+            vida.innerHTML += '❤️';
+            setTimeout(() => { cuadroVida.classList.remove('bueno')}, 500);
+        }
+    }
+
+    pwCongelacion=(cuadroTiempo, pwCantidad)=>{
+        const SFXcongelacion = new Audio('/build/assets/audio/congelacion.mp3');
+        const congelacion = document.querySelector(pwCantidad) || document.getElementById(pwCantidad);
+        const cuadroTiempoDOM = document.querySelector(cuadroTiempo) || document.getElementById(cuadroTiempo);
+        if(!this.datoUsuario.pw_congelar == 0 && this.congelacion == false){
+            this.datoUsuario.pw_congelar--;
+            congelacion.innerHTML= this.datoUsuario.pw_congelar
+            cuadroTiempoDOM.classList.add('congelado');
+            SFXcongelacion.load();
+            SFXcongelacion.play();
+            this.congelacion = true;
+
+            setTimeout(() => {
+                cuadroTiempoDOM.classList.remove('congelado');
+                SFXcongelacion.pause();
+                this.congelacion = false;
+            }, 20*1000)
+        }
     }
 
     //agrega el efecto de sonido de respuesta correcta

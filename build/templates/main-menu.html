@@ -23,16 +23,115 @@
 
     .back{
         height: 95vh;
+        aspect-ratio: 20/9;
     }
 
     audio{
         display: none;}
 
+    .modal{
+        width: 99vw;
+        height: 95vh;
+        position: absolute;
+        background-color: #1d1d1d85;
+        z-index: 101;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 
-    
+    .resultado{
+        background-image: url('./assets/sprites/tablon.png');
+        width: 45%;
+        height: 51%;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 50px 50px;
+    }
+    .resultado h2{
+        font-size: 5rem;
+        color: #fff;
+    }
+
+    .resultado img{
+        width: 40%;
+        margin: 0 auto;
+        margin-top: 5%;
+        cursor: pointer;    
+    }
+
+    .resultado img:hover{
+        transform: scale(1.2);
+    }
+
+    .nombre{
+        width: 50%;
+        height: 50px;
+        font-size: 3rem;
+        padding: 5px;
+        text-align: center;
+        margin-bottom: 20px;
+        border: none;
+        border-bottom: 2px solid white;
+        background-color: transparent;
+    }
+
+    .nombre:focus{
+        outline: none;
+    }
+
+    .hide{
+        display: none;
+    }
+
+    .titulo{
+        width: 40%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform-origin: 50% 0%;
+        animation: rotacion 5s infinite linear;
+    }
+
+    #play{
+        width: 25%;
+        margin: 10px;
+        margin-left: 40px;
+    }
+
+    @keyframes rotacion {
+        0% {
+            transform: rotate(0deg);
+        }
+        33% {
+            transform: rotate(5deg);
+        }
+        66% {
+            transform: rotate(-5deg);
+        }
+
+        99% {
+            transform: rotate(0deg);
+        }
+
+        
+    }
 </style>
 
-<img src="https://static.vecteezy.com/system/resources/previews/007/633/071/original/cartoon-colorful-panorama-of-spring-summer-beautiful-nature-green-grasslands-meadow-with-mountains-on-horizon-background-summer-mountain-landscape-dawn-over-the-valley-illustration-free-vector.jpg" class="back" alt="inicio">
+<div class="modal hide">
+    <div class="resultado">                
+        <h2 class="resultado-txt">Ingrese su nombre</h2>
+        <input type="text" class="nombre" minlength="1" maxlength="10" required>
+        <img src="/build/assets/sprites/btnContinuar.png" alt="" class="continuar-menu">
+    </div>
+</div>
+
+<img src="/build/assets/sprites/menu.jpeg" class="back" alt="inicio">
 <audio controls src="/build/assets/audio/Cupcake.mp3" autoplay loop></audio>
+<img src="/build/assets/sprites/titulo.png" class="titulo" alt="cartel">
 <audio src="/build/assets/audio/pop.mp3" id="hover"></audio>
-<img src="/build/assets/sprites/main-menu-jugar.png" class="sprite main_menu_jugar" alt="cartel" id="play">
+<img src="/build/assets/sprites/btnJugar.png" class="sprite main_menu_jugar" alt="cartel" id="play">

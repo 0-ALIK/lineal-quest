@@ -13,12 +13,24 @@ const mainmenu = {
             progreso:[{nivel:1,estrellas:0}],
             pw_vida:1,
             pw_congelar:1,
+            desbloqueables:[]
         }
         //verifica si ya hay una partida guardada en el localstorage
-        if(!localStorage.getItem('usuario-progreso')) localStorage.setItem('usuario-progreso', JSON.stringify(usuario))
         GM.setearBoton('#play', () => {
-            new ScenesManager().cargarPantalla( mapaniveles );
+            abrirModal();
         });
+
+        const abrirModal = ()=>{
+            if(localStorage.getItem('usuario-progreso')) new ScenesManager().cargarPantalla( mapaniveles );
+            document.querySelector('.modal').classList.remove('hide');
+            GM.setearBoton('.continuar-menu',()=>{
+                const nombre = document.querySelector('.nombre').value || 'Invitado';
+                document.querySelector('.modal').classList.add('hide');
+                usuario.nombre = nombre;
+                localStorage.setItem('usuario-progreso', JSON.stringify(usuario))
+                new ScenesManager().cargarPantalla( mapaniveles );
+            })
+        }
     },
 
     onDestroy: function () {},

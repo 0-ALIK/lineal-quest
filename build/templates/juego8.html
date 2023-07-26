@@ -128,14 +128,10 @@
         width: 90%;
         height: 25%;
         border-radius: 5px;
-        background-color: rgba(128, 128, 128, 0);
-        margin: 0 auto;
+        background-color: rgb(255, 143, 69);
+        border: 3px solid black;
+        margin: 5px auto;
         margin-top: 2%;
-        display: grid;
-        grid-template-columns: auto auto;
-        grid-row: auto auto;
-        grid-column-gap: 10px;
-        grid-row-gap: 10px;
     }
 
     .opc {
@@ -250,6 +246,43 @@
         background-color: greenyellow;
     }
 
+    .erroneo{
+        background-color: rgb(255, 88, 88);
+    }
+
+    .cuadro-respuesta div{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 20px;
+        font-size: 40px;
+    }
+
+    .resp{
+        max-width: 80px;
+        font-size: 40px;
+        border-style:solid;
+        border: 1px solid black;
+        border-radius: 3px;
+    }
+
+    #botonwrap{
+        display: flex;
+    }
+
+    #botonwrap button{
+        font-size: 40px;
+        border: 2px solid black;
+        border-radius: 5px;
+        padding: 5px 20px;
+        background-color: #ffecab;
+    }
+
+    #botonwrap button:hover{
+        cursor: pointer;
+        transform: scale(1.1);
+    }
+
     @keyframes hablar {
         0% {
             transform: scaleY(1);
@@ -288,7 +321,7 @@
 }}
 </style>
 
-<audio src="/build/assets/audio/musicaJuego.mp3" autoplay  loop></audio>
+<audio src="/build/assets/audio/musicaJuego.mp3" autoplay loop></audio>
 <div class="modal">
     <h1 class="preparado">PREPARADO?!</h1>
     <div class="resultado hide">                 
@@ -332,24 +365,29 @@
     </div>
 
     <div class="cuadro-problema">
-        <h2>Encuentra las variables</h2>
-        Supongamos que tienes una granja que cría dos tipos de animales: pollos y cerdos.<br>
-         Quieres maximizar la cantidad total de animales en la granja, pero tienes dos restricciones:<br>
-
-La cantidad de espacio disponible en la granja solo permite tener un máximo de 40 animales.<br>
-Los recursos disponibles para alimentar a los animales limitan la cantidad de pollos a un máximo de 20.<br>
+        <h2>Encuentra la funcion objetiva!</h2>
+        Supongamos que tienes una panadería y produces dos tipos de productos: pan y pasteles. <br>
+        Cada pan se vende por $2 y cada pastel por $3. Quieres maximizar tus ingresos diarios <br>
+        <br>
+        En este caso, las variables son directamente las cantidades de pan y pasteles que decides producir en un día determinado.
+<br><br>
+Variables:
 <br>
-<br>TIP: Como identifico las variables?<br>
-Por ejemplo, si tenemos un problema para maximizar las ganancias de venta de dos productos, llamémoslos "A" y "B",<br>
- las variables podrían ser "x" (cantidad de unidades del producto A que se venden) <br>
- e "y" (cantidad de unidades del producto B que se venden). <br>
+x: cantidad de pan producido al día. <br>
+y: cantidad de pasteles producidos al día.
+<br>
+<br>TIP: Como identifico la funcion objetiva?<br>
+Puedes identificar la función objetivo al observar la ecuación o expresión matemática que involucra <br>
+ las variables del problema y que queremos optimizar <br>
     </div>
     
     <div class="cuadro-respuesta">
-        <div class="opc">pollos y cantidad de pollos</div>
-        <div class="opc">cantidad de pollos y cerdos</div>
-        <div class="opc">cerdos y cantidad de cerdos</div>
-        <div class="opc">pollos y cerdos</div>
+        <div>
+            <p>Maximizar Z = <input type="text" class="resp" maxlength="3">X + <input type="text" class="resp" maxlength="3">Y</p>
+        </div>
+        <div  id="botonwrap">
+            <button class="validar">Validar</button>
+        </div>
     </div>
 </div>
 </div>

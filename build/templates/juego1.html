@@ -5,8 +5,9 @@
         width: 95vw;
         display: flex;
         flex-direction: row;
-        background-image: url('https://static.vecteezy.com/system/resources/previews/007/633/071/original/cartoon-colorful-panorama-of-spring-summer-beautiful-nature-green-grasslands-meadow-with-mountains-on-horizon-background-summer-mountain-landscape-dawn-over-the-valley-illustration-free-vector.jpg');
+        background-image: url('./assets/sprites/fondo.jpg');
         background-size: cover;
+        overflow: hidden;
     }
 
     .left-section {
@@ -25,14 +26,16 @@
     .vida{
         width: 50%;
         height: 10%;
-        background-color: gray;
-        border: 1px solid black;
+        background-color: #ffe854;
+        border: 3px solid black;
         border-radius: 5px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         margin: 5% auto;
+        color: #22ba39;
+        box-shadow: 1px 12px 16px 1px rgba(0,0,0,0.75);
     }
 
     .vida p {
@@ -41,7 +44,6 @@
 
     .personaje {
         width: 100%;
-        margin-top: 10%;
     }
 
     .hablar-pj{
@@ -53,9 +55,11 @@
         margin-bottom: 5%;
         width: 100%;
         height: auto;
-        border: 1px solid black;
+        border: 2px solid black;
         border-radius: 5px;
-        background-color: gray;
+        background-color: #e3e3e3;
+        color: black;
+        box-shadow: 1px 12px 16px 1px rgba(0,0,0,0.75);
     }
     .texto{
         font-size: 20px;
@@ -78,8 +82,8 @@
     .tiempo{
         width: 30%;
         height: 50%;
-        background-color: gray;
-        border: 1px solid black;
+        background-color: #70b749;
+        border: 3px solid black;
         border-radius: 5px;
         display: flex;
         flex-direction: column;
@@ -88,13 +92,14 @@
         margin: auto auto;
         padding: 10px;
         font-size: 35px;
+        box-shadow: 1px 12px 16px 1px rgba(0,0,0,0.75);
     }
 
     .potenciadores{
         width: 30%;
         height: 50%;
-        background-color: gray;
-        border: 1px solid black;
+        background-color: #9287ff;
+        border: 3px solid black;
         border-radius: 5px;
         display: flex;
         flex-direction: row;
@@ -103,6 +108,7 @@
         margin: auto auto;
         padding: 10px;
         font-size: 35px;
+        box-shadow: 1px 12px 16px 1px rgba(0,0,0,0.75);
     }
 
     .cuadro-problema{
@@ -110,29 +116,30 @@
         height: 50%;
         font-size: 20px;
         padding: 10px;
-        border: 1px solid black;
+        border: 3px solid black;
+        color: black;
         border-radius: 5px;
-        background-color: gray;
+        background-color: #e3904c;
         margin: 0 auto;
+        box-shadow: 1px 12px 16px 1px rgba(0,0,0,0.75);
     }
 
     .cuadro-respuesta{
         width: 90%;
         height: 25%;
-        border: 1px solid black;
         border-radius: 5px;
-        background-color: gray;
+        background-color: rgba(128, 128, 128, 0);
         margin: 0 auto;
         margin-top: 2%;
         display: grid;
         grid-template-columns: auto auto;
         grid-row: auto auto;
-        grid-column-gap: 20px;
-        grid-row-gap: 20px;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
     }
 
     .opc {
-        margin: 5px;
+    margin: 5px;
     background-color:#333;
     padding:20px;
     border-radius:10px;
@@ -211,6 +218,38 @@
         display: none;
     }
 
+    .potenciadores h2{
+        font-size: 40px;
+        margin-right: 20px;
+    }
+
+    .pw{
+        width: 50px;
+        margin: 0 5px;}
+
+    .pw:hover{
+        transform: scale(1.2);
+    }
+
+    .pw-cuadro{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid black;
+        border-radius: 5px;
+        background-color: #1d1d1d;
+        margin: 0 5px;
+    }
+
+    .congelado{
+        background-color: aqua;
+    }
+
+    .bueno{
+        background-color: greenyellow;
+    }
+
     @keyframes hablar {
         0% {
             transform: scaleY(1);
@@ -251,7 +290,7 @@
 
 <audio src="/build/assets/audio/musicaJuego.mp3" autoplay  loop></audio>
 <div class="modal">
-    <h1 class="preparado">ENCUENTRA LAS VARIBLES?!</h1>
+    <h1 class="preparado">PREPARADO?!</h1>
     <div class="resultado hide">                 
         <h2 class="resultado-txt">Nivel Completado</h2>
         <p class="estrellas-resultado"></p>
@@ -268,7 +307,7 @@
     <div class="cuadro-texto">
         <div class="texto" ></div>
     </div>
-    <img src="https://png.pngtree.com/png-clipart/20230401/original/pngtree-indian-boy-2d-cartoon-character-with-kurta-and-pajama-isolated-on-png-image_9018082.png" alt="" class="personaje">
+    <img src="/build/assets/sprites/personaje.png" alt="" class="personaje">
   
 </div>
 
@@ -280,18 +319,29 @@
             <p class="tiempo-juego">3:0</p>
         </div>
         <div class="potenciadores">
-            <p>Potenciadores</p>
-            <p>🥶</p>
-            <p>❤️</p>
-            <p>❤️</p>
+            <h2>PowerUps!</h2>
+            <div class="pw-cuadro">
+                <img src="/build/assets/sprites/vidaExtra.png" alt="" class="pw pw-vidaextra" style="width: 56px;">
+                <p class="vidaextra">1</p>
+            </div>
+            <div class="pw-cuadro">
+                <img src="/build/assets/sprites/congelacion.png" alt="" class="pw pw-congelacion">
+                <p class="congelacion">1</p>
+            </div>
         </div>
     </div>
 
     <div class="cuadro-problema">
+        <h2>Encuentra las variables</h2>
         Supongamos que tienes una tienda de ropa y vendes dos tipos de prendas: camisetas y pantalones. 
         <br>Cada camiseta se vende por $10 y cada pantalón por $20. Quieres maximizar tus ganancias diarias, pero tienes dos restricciones:
 <br><br>Solo puedes vender un máximo de 50 camisetas al día.
 <br>Solo puedes vender un máximo de 30 pantalones al día.
+<br>
+<br>TIP: Como identifico las variables?<br>
+Por ejemplo, si tenemos un problema para maximizar las ganancias de venta de dos productos, llamémoslos "A" y "B",<br>
+ las variables podrían ser "x" (cantidad de unidades del producto A que se venden) <br>
+ e "y" (cantidad de unidades del producto B que se venden).
     </div>
     
     <div class="cuadro-respuesta">
