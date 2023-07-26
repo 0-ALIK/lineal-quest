@@ -41,25 +41,26 @@ const mapaniveles = {
             new SoundManager().definirBoton( elemento );
 
             const dataset = elemento.dataset.nivel;
+            const textoNivel = elemento.firstElementChild;
+            const estrellasNivel = elemento.lastElementChild;
 
             elemento.style.top = this.posNivelesMapa[ dataset ].top;
             elemento.style.left = this.posNivelesMapa[ dataset ].left;
 
-            elemento.firstElementChild.innerText = dataset.split('-').join(' ');
+            textoNivel.innerText = dataset.split('-').join(' ');
     
             const juegoData = baseDatos.getJuegoData( dataset );
 
-            if( juegoData.juegado ) {
-                elemento.lastElementChild.style.display = 'block';
-                elemento.lastElementChild.src = `/build/assets/sprites/nivel-estrellas-${ juegoData.estrellas }.jpg`;  
+            if( juegoData.jugado ) {
+                estrellasNivel.style.display = 'block';
+                estrellasNivel.src = `/build/assets/sprites/nivel-estrellas-${ juegoData.estrellas }.jpg`;  
             } else {
-                elemento.lastElementChild.style.display = 'none';
+                estrellasNivel.style.display = 'none';
             }
 
             elemento.addEventListener('click', e => {
                 mapaMusica.stop();
-                
-                new ScenesManager().cargarPantalla( this.juegosPorNiveles[ dataset ] );
+                new ScenesManager(  ).cargarPantalla( this.juegosPorNiveles[ dataset ] );
             });
         });
     },

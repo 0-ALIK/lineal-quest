@@ -15,7 +15,28 @@
         background-color: red;
         color: white;
     }
+
+    .pedir-nombre {
+        width: 500px;
+        height: 200px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        flex-direction: column;
+        padding: 20px;
+    }
+
 </style>
+
+<div class="interfaz pedir-nombre" id="pedir-nombre">
+    <p style="font-size: large; color: #fff;">Ingresa tu nombre</p>
+    <input type="text" class="input-text" placeholder="Nombre" id="input-entrar">
+    <div class="interfaz-button button" id="botton-entrar">Entrar a jugar</div>
+</div>
 
 <img src="/build/assets/sprites/main-menu-back.jpg" class="back" alt="inicio">
 
