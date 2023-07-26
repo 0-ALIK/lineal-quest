@@ -13,13 +13,21 @@
     align-items: center;
 }
 
+.button {
+    transition: transform .2s;
+}
+
+.button:hover {
+    transform: scale(1.2);
+}
+
 .screen {
     border-radius: 8px;
     border: 10px solid #fff;
     background-color: #fff;
     position: relative;
-    width: 700px;
-    height: 500px;
+    width:  95%;
+    height: 95%;
 }
 
 .back {

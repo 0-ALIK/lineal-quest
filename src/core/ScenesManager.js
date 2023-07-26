@@ -17,7 +17,7 @@ export default class ScenesManager {
         }
 
         // Cargar en la pantalla del viedeo juego el template de la escena
-        const pantalla = document.getElementById('pantalla');
+        const pantalla = document.getElementById('screen');
         const template = await fetch(`./templates/${ scene.template }`).then(data => data.text());
         pantalla.innerHTML = template;
 

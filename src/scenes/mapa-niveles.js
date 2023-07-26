@@ -5,6 +5,8 @@ import juego2 from "./juego2";
 import juego3 from "./juego3";
 import juego4 from "./juego4";
 import juego5 from "./juego5";
+import SoundManager from "../core/SoundModule";
+import BaseDatos from "../core/BaseDatos";
 
 const mapaniveles = {
 
@@ -28,20 +30,38 @@ const mapaniveles = {
     },
     
     loadLogic: function () {
-        const niveles = document.getElementsByClassName('sprite');
+        const niveles = document.getElementsByClassName('nivel');
+
+        const baseDatos = new BaseDatos();
+
+        const mapaMusica = new SoundManager( 'mapaMusica.mp3' );
+        mapaMusica.play(0.5, true);
 
         recorrerHTMLCollection(niveles, elemento => {
-            elemento.style.top = this.posNivelesMapa[ elemento.dataset.nivel ].top;
-            elemento.style.left = this.posNivelesMapa[ elemento.dataset.nivel ].left;
+            new SoundManager().definirBoton( elemento );
 
-            elemento.lastElementChild.src = '/build/assets/sprites/nivel-estrellas-0.jpg';
+            const dataset = elemento.dataset.nivel;
+
+            elemento.style.top = this.posNivelesMapa[ dataset ].top;
+            elemento.style.left = this.posNivelesMapa[ dataset ].left;
+
+            elemento.firstElementChild.innerText = dataset.split('-').join(' ');
+    
+            const juegoData = baseDatos.getJuegoData( dataset );
+
+            if( juegoData.juegado ) {
+                elemento.lastElementChild.style.display = 'block';
+                elemento.lastElementChild.src = `/build/assets/sprites/nivel-estrellas-${ juegoData.estrellas }.jpg`;  
+            } else {
+                elemento.lastElementChild.style.display = 'none';
+            }
 
             elemento.addEventListener('click', e => {
-                new ScenesManager().cargarPantalla( this.juegosPorNiveles[ elemento.dataset.nivel ] );
+                mapaMusica.stop();
+                
+                new ScenesManager().cargarPantalla( this.juegosPorNiveles[ dataset ] );
             });
-
         });
-    
     },
 
     onDestroy: function () {
