@@ -1,8 +1,12 @@
 const dataExample = {
     powerUps: [
-        /* { nombre: 'vida', id: '123123' } */
+        { nombre: 'vida', id: '123123' },
+        { nombre: 'stoptimer', id: '123123' }
     ], 
-    jugador: null,
+    jugador: {
+        nombre: 'Alik',
+        vidas: 3
+    },
     niveles: {
         'nivel-1': {
             jugado: false,
@@ -55,13 +59,24 @@ export default class BaseDatos {
 
     setNombreJugador( nombre ) {
         const data = this.#getData();
-        data.jugador = nombre;
+        data.jugador.nombre = nombre;
         this.#setData( data );
     }
 
     getNombreJugador() {
         const data = this.#getData();
-        return data.jugador;
+        return data.jugador.nombre;
+    }
+
+    getVidasJugador() {
+        const data = this.#getData();
+        return data.jugador.vidas;
+    }
+
+    setVidasJugador( vidas ) {
+        const data = this.#getData();
+        data.jugador.vidas = vidas;
+        this.#setData( data );
     }
 
     getPowerUps() {
@@ -76,6 +91,7 @@ export default class BaseDatos {
         data.powerUps = powerUpsConsumido;
         this.#setData( data );
     }
+
 
     pushPowerUp( nombre ) {
         const data = this.#getData();

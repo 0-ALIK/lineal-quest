@@ -7,6 +7,7 @@ import juego4 from "./juego4";
 import juego5 from "./juego5";
 import SoundManager from "../core/SoundModule";
 import BaseDatos from "../core/BaseDatos";
+import PowerUpsManager from "../core/PowerUpsManger";
 
 const mapaniveles = {
 
@@ -14,11 +15,11 @@ const mapaniveles = {
 
     // posición de los sprites de los niveles en el mapa
     posNivelesMapa: {
-        "nivel-1": {top: '50px', left: '50px'},
-        "nivel-2": {top: '150px', left: '150px'},
-        "nivel-3": {top: '250px', left: '250px'},
-        "nivel-4": {top: '150px', left: '300px'},
-        "nivel-5": {top: '350px', left: '350px'},
+        "nivel-1": {top: '649px', left: '559px'},
+        "nivel-2": {top: '460px', left: '281px'},
+        "nivel-3": {top: '350px', left: '848px'},
+        "nivel-4": {top: '155px', left: '448px'},
+        "nivel-5": {top: '37px', left: '970px'}
     },
 
     juegosPorNiveles: {
@@ -31,6 +32,9 @@ const mapaniveles = {
     
     loadLogic: function () {
         const niveles = document.getElementsByClassName('nivel');
+        const datos = document.getElementById('datos');
+        const powerups = document.getElementById('powerups');
+        const vidas = document.getElementById('vidas');
 
         const baseDatos = new BaseDatos();
 
@@ -63,10 +67,23 @@ const mapaniveles = {
                 new ScenesManager(  ).cargarPantalla( this.juegosPorNiveles[ dataset ] );
             });
         });
+
+        const powerupsArray = baseDatos.getPowerUps();
+        const nombreJugador = baseDatos.getNombreJugador();
+        const vidasNumber = baseDatos.getVidasJugador();
+
+        const powerUpManger = new PowerUpsManager();
+        powerUpManger.colocarVidasHTML( vidas, vidasNumber );
+
+        if( powerupsArray.length !== 0 ) {
+            powerUpManger.colocarPowerUpsHTML( powerups, powerupsArray );
+        }
+
+        datos.innerHTML = `<p><strong>Nombre: </strong>${nombreJugador}</p>`
+
     },
 
     onDestroy: function () {
-        
     }
 
 };
